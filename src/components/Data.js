@@ -58,22 +58,25 @@ export default function Data({ weatherData }) {
       "clouds": weatherData.clouds,
       "wind": weatherData.wind,
       "wind_speed": `${weatherData.wind.speed} m/s`,
-      "temp": String((weatherData.main.temp - 273.15).toFixed(2)),
-      "temp_min": String((weatherData.main.temp_min - 273.15).toFixed(2)),
-      "temp_max": String((weatherData.main.temp_max - 273.15).toFixed(2)),
+      "temp": String((weatherData.main.temp - 273.15).toFixed(2)) + " °C",
+      "temp_min": String((weatherData.main.temp_min - 273.15).toFixed(2)) + " °C",
+      "temp_max": String((weatherData.main.temp_max - 273.15).toFixed(2)) + " °C",
       "humidity": `${weatherData.main.humidity}%`,
       "condition": weatherData.weather[0].main,
-      "feels_like": String((weatherData.main.feels_like - 273.15).toFixed(2)),
+      "feels_like": String((weatherData.main.feels_like - 273.15).toFixed(2)) + " °C",
     });
   console.log(specificData);
-  
   return (
     <div>
       <TempToggle specificData={specificData} setSpecificData={setSpecificData} />
-      {specificData.name}
-      <br></br>
-      {specificData.temp}
-      {console.log(specificData)}
+      <div>Weather Breakdown</div>
+      <div>{specificData.temp}</div>
+      <div>
+        <div>{specificData.condition}</div>
+        <div>SVG</div>
+      </div>
+      <div>Humidity: {specificData.humidity}</div>
+      <div>Wind Speed: {specificData.wind_speed}</div>
     </div>
   )
 }
