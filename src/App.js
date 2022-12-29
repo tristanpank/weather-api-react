@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
-import getWeatherData from "./weatherApiCall";
-import Header from "./components/header";
+import { useState } from "react";
+import Header from "./components/Header";
+import Input from "./components/Input";
 
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
-  useEffect(() => {
-    const fetchData = async() => {
-      const data = await getWeatherData("ocala");
-      setWeatherData(data);
-    };
-    fetchData();
-  }, []);
 
   return (
   <>
     <Header />
+    <Input setWeatherData={setWeatherData} />
     <div>
       {weatherData.name}
     </div>
