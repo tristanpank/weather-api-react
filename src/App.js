@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import getWeatherData from "./weather-api-call";
+import getWeatherData from "./weatherApiCall";
+import Header from "./components/header";
 
 
 function App() {
@@ -13,9 +14,12 @@ function App() {
   }, []);
 
   return (
-  <div>
-    {weatherData.name}
-  </div>
+  <>
+    <Header />
+    <div>
+      {weatherData.name}
+    </div>
+  </>
   )
 };
 
