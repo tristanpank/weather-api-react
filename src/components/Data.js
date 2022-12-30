@@ -37,14 +37,16 @@ function TempToggle({ specificData, setSpecificData, isCelcius, setIsCelcius }) 
   }
 
   return (
-    <form>
-      <label>
-        <input type="radio" checked={isCelcius && "checked"} onChange={handleToggleClick} />
-        Celcius
+    <form className=' flex gap-2'>
+      <label className=' flex flex-col items-center font-bold text-lg'>
+        C
+        <input type="radio" checked={isCelcius && "checked"} onChange={handleToggleClick} 
+        className=""/>
       </label>
-      <label>
-        <input type="radio" checked={!isCelcius && "checked"} onChange={handleToggleClick} />
-        Farenheight
+      <label className=' flex flex-col items-center font-bold text-lg'>
+        F
+        <input type="radio" checked={!isCelcius && "checked"} onChange={handleToggleClick} 
+        className=""/>
       </label>
     </form>
   )
@@ -68,16 +70,16 @@ export default function Data({ weatherData, forecastData }) {
   const [isCelcius, setIsCelcius] = useState(true);
   console.log(specificData);
   return (
-    <div>
+    <div className=' flex flex-col items-center gap-2'>
       <TempToggle specificData={specificData} setSpecificData={setSpecificData} isCelcius={isCelcius} setIsCelcius={setIsCelcius} />
-      <div>Weather Breakdown</div>
-      <div>{specificData.temp}</div>
+      <div className=' font-bold text-3xl text-sky-800'>Weather Breakdown</div>
+      <div className=' font-semibold text-5xl'>{specificData.temp}</div>
       <div>
-        <div>{specificData.condition}</div>
+        <div className=' text-xl'>{specificData.condition}</div>
         <div>SVG</div>
       </div>
-      <div>Humidity: {specificData.humidity}</div>
-      <div>Wind Speed: {specificData.wind_speed}</div>
+      <div className=' text-xl'>Humidity: {specificData.humidity}</div>
+      <div className=' text-xl'>Wind Speed: {specificData.wind_speed}</div>
       <Forecast forecastData={forecastData} isCelcius={isCelcius} />
     </div>
   )
