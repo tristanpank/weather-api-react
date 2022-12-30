@@ -3,30 +3,28 @@ import { useState } from "react";
 
 function TimezoneDropdown({ setTimezone }) {
   const timezonesArray = [
-    "IDLW",
-    "NT",
-    "HST",
-    "AKST",
-    "PST",
-    "MST",
-    "CST",
-    "EST",
-    "AST",
-    "ART",
-    "AT",
-    "WAT",
-    "GMT",
-    "CET",
-    "EET",
-    "MSK",
-    "AMT",
-    "PKT",
-    "OMSK",
-    "KRAT",
-    "JST",
-    "AEST",
-    "SAKT",
-    "NZST",
+    "Pacific/Midway",
+    "Pacific/Honolulu",
+    "America/Anchorage",
+    "America/Los_Angeles",
+    "America/Denver",
+    "America/Chicago",
+    "America/New_York",
+    "America/Aruba",
+    "America/Buenos_Aires",
+    "Atlantic/Azores",
+    "Europe/London",
+    "Europe/Belgrade",
+    "Europe/Helsinki",
+    "Europe/Moscow",
+    "Asia/Baku",
+    "Asia/Karachi",
+    "Asia/Dhaka",
+    "Asia/Bangkok",
+    "Asia/Tokyo",
+    "Australia/Sydney",
+    "Pacific/Guadalcanal",
+    "Pacific/Fiji",
   ]
   const selectTimezoneItems = timezonesArray.map(timezone => <option value={timezone} key={timezone}>{timezone}</option>)
 
@@ -39,6 +37,7 @@ function TimezoneDropdown({ setTimezone }) {
       <label htmlFor="timezones">
         Choose a Timezone: 
         <select id="timezones" onChange={handleTimezoneChange}>
+          <option disabled selected value>Timezone</option>
           {selectTimezoneItems}
         </select>
       </label>
@@ -71,8 +70,23 @@ export default function Forecast({ forecastData, isCelcius }) {
   // })
   console.log(dayData);
   // console.log(dayData[0].time.toLocaleTimeString("GMT", {timeZone: "MST"}))
+  const forecastBlock = dayData.map(day => {
+    const timeSplit = day.time.split(":");
+    return (
+      <div>
+      <div>{day.temp}</div>
+      <div>{timeSplit[0] + day.time.slice(-2)}</div>
+      </div>
+    );
+  })
 
   return (
-    <TimezoneDropdown setTimezone={setTimezone} />
+    <div>
+      <TimezoneDropdown setTimezone={setTimezone} />
+      <div>
+        Forecast for the next 24 Hours
+        {forecastBlock}
+      </div>
+    </div>
   )
 }
