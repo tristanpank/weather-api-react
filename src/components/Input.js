@@ -37,12 +37,16 @@ export default function Input({ setWeatherData, setStatus, setForecastData, stat
   }
 
   return (
-    <>
-      <div className="font-bold text-green-300 text-lg" >{displayCity}</div>
-      <form onSubmit={handleSubmit}>
-        <input className=" border-green-300 placeholder:italic text-blue-500" onChange={handleInputChange} placeholder="Location" />
-        <button type="submit">Submit</button>
+    <div className=" flex flex-col items-center p-5 gap-2">
+      <div className="font-bold text-2xl" >{displayCity}</div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 items-center">
+        
+        <input className={`border-2 ${(status === "error") ? "border-red-600" : "border-black"}
+        rounded-md outline-none placeholder:italic placeholder:text-center pl-1`} onChange={handleInputChange} placeholder="Location" />
+        
+        <button type="submit" className=" bg-sky-800 text-white font-bold w-1/2 h-8 rounded-md hover:bg-sky-900 active:bg-blue-900 transition-transform ease-in-out delay-100 hover:scale-110 duration-200
+        shadow-sm shadow-gray-400">Submit</button>
       </form>
-    </>
+    </div>
   );
 }
