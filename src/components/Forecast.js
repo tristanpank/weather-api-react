@@ -34,9 +34,11 @@ function TimezoneDropdown({ setTimezone }) {
 
   return (
     <form>
-      <label htmlFor="timezones">
+      <label htmlFor="timezones" className="flex gap-2 text-base mb-5 flex-wrap">
         Choose a Timezone: 
-        <select id="timezones" onChange={handleTimezoneChange}>
+        <select id="timezones" onChange={handleTimezoneChange}
+        className="bg-slate-100 outline-none border-2 border-sky-800 rounded-md text-center focus:bg-slate-200
+        transition-transform hover:scale-105 ease-in-out duration-200 shadow-md">
           <option disabled selected value>Timezone</option>
           {selectTimezoneItems}
         </select>
@@ -73,18 +75,22 @@ export default function Forecast({ forecastData, isCelcius }) {
   const forecastBlock = dayData.map(day => {
     const timeSplit = day.time.split(":");
     return (
-      <div>
-      <div>{day.temp}</div>
-      <div>{timeSplit[0] + day.time.slice(-2)}</div>
+      <div className="flex flex-col items-center bg-sky-200 shadow-md border border-black p-1
+      transition hover:scale-110 duration-200 hover:bg-sky-700 hover:text-white ease-in-out
+      hover:border-2 rounded-md">
+        <div>{day.temp}</div>
+        <div>{timeSplit[0] + day.time.slice(-2)}</div>
       </div>
     );
   })
 
   return (
-    <div>
-      <TimezoneDropdown setTimezone={setTimezone} />
-      <div>
+    <div className=" flex flex-col items-center">
+      <TimezoneDropdown setTimezone={setTimezone} className="mb-4" />
+      <div className=" font-bold text-2xl text-sky-800 mb-3">
         Forecast for the next 24 Hours
+      </div>
+      <div className="flex gap-3 items-center justify-center flex-wrap text-lg">
         {forecastBlock}
       </div>
     </div>
