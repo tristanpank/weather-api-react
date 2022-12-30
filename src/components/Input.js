@@ -1,7 +1,7 @@
 import { useState } from "react";
 import getWeatherData from "../weatherApiCall";
 
-export default function Input({ setWeatherData, setStatus, setForecastData, status }) {
+export default function Input({ setWeatherData, setStatus, setForecastData, status, setMapURL }) {
   const [city, setCity] = useState("");
   const [displayCity, setDisplayCity] = useState("Input Location");
   // useEffect(() => {
@@ -17,11 +17,12 @@ export default function Input({ setWeatherData, setStatus, setForecastData, stat
     console.log(city);
     setStatus("searching");
     
-    const [weatherData, forecastData] = await getWeatherData(city);
+    const [weatherData, forecastData, mapURL] = await getWeatherData(city);
     if (weatherData.cod === 200) {
       setWeatherData(weatherData);
       setForecastData(forecastData);
       setDisplayCity(weatherData.name);
+      setMapURL(mapURL);
       setStatus("found");
     } else {
       setWeatherData(null);

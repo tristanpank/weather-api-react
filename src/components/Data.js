@@ -52,7 +52,7 @@ function TempToggle({ specificData, setSpecificData, isCelcius, setIsCelcius }) 
   )
 }
 
-export default function Data({ weatherData, forecastData }) {
+export default function Data({ weatherData, forecastData, mapURL }) {
   const [specificData, setSpecificData] = useState(
     {
       "name": weatherData.name,
@@ -76,7 +76,7 @@ export default function Data({ weatherData, forecastData }) {
       <div className=' font-semibold text-5xl'>{specificData.temp}</div>
       <div>
         <div className=' text-xl'>{specificData.condition}</div>
-        <div>SVG</div>
+        {/* <img src={mapURL} alt="Map" /> */}
       </div>
       <div className=' text-xl'>Humidity: {specificData.humidity}</div>
       <div className=' text-xl'>Wind Speed: {specificData.wind_speed}</div>

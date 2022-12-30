@@ -11,7 +11,12 @@ export default async function getWeatherData(city) {
     const forecastData = await forecastResponse.json();
     console.log(forecastData);
     console.log(weatherData);
-    return [weatherData, forecastData];
+    const mapResponse = await fetch(`https://tile.openweathermap.org/map/temp_new/2/${"1"}/${"1"}.png?appid=ff959cd60bd81def53e946ffe7232d4b`, {mode: "cors"})
+    const mapData = await mapResponse.blob();
+    const mapURL = await URL.createObjectURL(mapData);
+    console.log(mapResponse);
+    console.log(mapData);
+    return [weatherData, forecastData, mapURL];
   } catch(err) {
     return ['err', 'err'];
   }
