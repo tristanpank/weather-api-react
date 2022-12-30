@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Data from "./components/Data";
-import Forecast from "./components/Forecast";
 import Header from "./components/Header";
 import Input from "./components/Input";
 
@@ -17,8 +16,7 @@ function App() {
     {(status === "searching") && <div>Searching</div>}
     {(status === "found") && 
     <>
-    <Data weatherData={weatherData} />
-    <Forecast forecastData={forecastData} />
+    <Data weatherData={weatherData} forecastData={forecastData} />
     </>
     }
   </>

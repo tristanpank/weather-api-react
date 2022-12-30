@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Forecast from './Forecast';
 
 function celciusToFarenheight(temp) {
   temp = Number(temp.slice(0, -3));
@@ -12,8 +13,7 @@ function farenheightToCelcius(temp) {
   return String(temp) + " °C";
 }
 
-function TempToggle({ specificData, setSpecificData }) {
-  const [isCelcius, setIsCelcius] = useState(true);
+function TempToggle({ specificData, setSpecificData, isCelcius, setIsCelcius }) {
   
   function handleToggleClick() {
     setIsCelcius(!isCelcius);
@@ -50,7 +50,7 @@ function TempToggle({ specificData, setSpecificData }) {
   )
 }
 
-export default function Data({ weatherData }) {
+export default function Data({ weatherData, forecastData }) {
   const [specificData, setSpecificData] = useState(
     {
       "name": weatherData.name,
@@ -65,10 +65,11 @@ export default function Data({ weatherData }) {
       "condition": weatherData.weather[0].main,
       "feels_like": String((weatherData.main.feels_like - 273.15).toFixed(2)) + " °C",
     });
+  const [isCelcius, setIsCelcius] = useState(true);
   console.log(specificData);
   return (
     <div>
-      <TempToggle specificData={specificData} setSpecificData={setSpecificData} />
+      <TempToggle specificData={specificData} setSpecificData={setSpecificData} isCelcius={isCelcius} setIsCelcius={setIsCelcius} />
       <div>Weather Breakdown</div>
       <div>{specificData.temp}</div>
       <div>
@@ -77,6 +78,9 @@ export default function Data({ weatherData }) {
       </div>
       <div>Humidity: {specificData.humidity}</div>
       <div>Wind Speed: {specificData.wind_speed}</div>
+      <Forecast forecastData={forecastData} isCelcius={isCelcius} />
     </div>
   )
 }
+
+export { celciusToFarenheight, farenheightToCelcius }
