@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Data from "./components/Data";
+import Forecast from "./components/Forecast";
 import Header from "./components/Header";
 import Input from "./components/Input";
 
@@ -14,7 +15,12 @@ function App() {
     <Header />
     <Input setWeatherData={setWeatherData} setStatus={setStatus} setForecastData={setForecastData} status={status} />
     {(status === "searching") && <div>Searching</div>}
-    {(status === "found") && <Data weatherData={weatherData} />}
+    {(status === "found") && 
+    <>
+    <Data weatherData={weatherData} />
+    <Forecast forecastData={forecastData} />
+    </>
+    }
   </>
   )
 };
