@@ -38,9 +38,9 @@ export default function Input({ setWeatherData, setStatus, setForecastData, stat
 
   return (
     <>
-      <div>{displayCity}</div>
+      <div className="font-bold text-green-300 text-lg" >{displayCity}</div>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleInputChange} style={{borderColor: (status === "error") && "red"}} />
+        <input className=" border-green-300 placeholder:italic text-blue-500" onChange={handleInputChange} placeholder="Location" />
         <button type="submit">Submit</button>
       </form>
     </>
